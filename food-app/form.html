@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: rgb(103, 132, 175);
+        }
+
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form-group button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <pre>
+                     <img src="images/gymkrtisbji.gif" height="300" width="1000">
+    </pre>
+    </header>
+    <div class="calculator">
+        <h2>BMI Calculator</h2>
+        <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="text" id="weight" placeholder="Enter weight">
+        </div>
+        <div class="form-group">
+            <label for="height">Height (cm):</label>
+            <input type="text" id="height" placeholder="Enter height">
+        </div>
+        <div class="form-group">
+            <button onclick="calculateBMI()">Calculate BMI</button>
+        </div>
+        <div class="result" id="bmiResult"></div>
+    </div>
+    <img src="/LC-24-deliveroo-master/images/mealplan.gif" height="100">
+
+     <div class="calculator">
+        <h2>BMI-based Diet Chart</h2>
+        <div class="form-group">
+            <label for="bmi">Your BMI:</label>
+            <input type="text" id="bmi" placeholder="Your BMI">
+        </div>
+        <div class="form-group">
+            <button onclick="generateDiet()">Generate Diet Chart</button>
+        </div>
+        <div class="result" id="dietChart"></div>
+    </div>
+    
+    
+    
+
+    <script>
+        function calculateBMI() {
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value);
+
+            if (!isNaN(weight) && !isNaN(height) && height > 0) {
+                var bmi = weight / ((height / 100) * (height / 100));
+                document.getElementById('bmiResult').innerText = "Your BMI is: " + bmi.toFixed(2);
+            } else {
+                document.getElementById('bmiResult').innerText = "Please enter valid weight and height.";
+            }
+        }
+    </script>
+     <script>
+        function generateDiet() {
+            var bmi = parseFloat(document.getElementById('bmi').value);
+            var dietChart = '';
+
+            if (!isNaN(bmi)) {
+                if (bmi < 18.5) {
+                    dietChart = 'Sample Diet for Underweight: Include more proteins, healthy fats, and carbohydrates in your meals.';
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    dietChart = 'Sample Diet for Normal Weight: Maintain a balanced diet with a variety of fruits, vegetables, proteins, and whole grains.';
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    dietChart = 'Sample Diet for Overweight: Focus on portion control, reduce sugar and processed foods, and increase physical activity.';
+                } else {
+                    dietChart = 'Sample Diet for Obesity: Consult a healthcare professional. Focus on portion control, regular exercise, and a balanced diet.';
+                }
+            } else {
+                dietChart = 'Invalid BMI value. Please enter a valid BMI.';
+            }
+
+            document.getElementById('dietChart').innerText = dietChart;
+        }
+    </script>
+    
+</body>
+</html>
